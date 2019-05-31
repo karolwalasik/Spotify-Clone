@@ -1,10 +1,11 @@
 <?php
 
 class Account{
-
+    private $con;
     private $errorArray;
 
-    public function __construct(){
+    public function __construct($con){
+        $this->con=$con;
         $this->errorArray=array();
     }
 
@@ -17,7 +18,7 @@ class Account{
 
             if(empty($this->errorArray)){
                 //insert into db
-                return true;
+                return $this->insertUserDetails($un,$fn,$ln,$em,$pw);
             }
             else{
                 return false;
@@ -29,6 +30,14 @@ class Account{
                 $error="";
             }
             return "<span class='errorMessage'>$error</span>";
+        }
+
+        private function insertUserDetails($un,$fn,$ln,$em,$pw){
+            $encryptedPw = md5($pw);
+            $profilePic = "assets/images/profile-pics/images.png";
+            $date= date("Y-m-d");
+            $result=mysqli_query($this->con,"INSERT INTO users VALUES('','$un','$fn','$ln','$em','$encryptedPw','$date','$profilePic')");
+            return $result;
         }
 
         private function validateUsername($un){
@@ -43,6 +52,12 @@ class Account{
             
             if(strlen($fn)>25 || strlen($fn)<2){
                 array_push($this->errorArray,Constants::$firstNameCharacters);
+                return;
+            }
+
+            $checkUsernameQuery=mysqli_query($this->con,"SELECT username FROM users WHERE username='$un");
+            if(mysqli_num_rows($checkUsernameQuery)!=0){
+                array_push($this->errorArray,Constants::$usernameTaken);
                 return;
             }
 
@@ -66,7 +81,11 @@ class Account{
                 array_push($this->errorArray,Constants::$emailInvalid);
                 return;
             }
-
+            $checkEmailQuery=mysqli_query($this->con,"SELECT email FROM users WHERE email='$em");
+            if(mysqli_num_rows($checkEmailQuery)!=0){
+                array_push($this->errorArray,Constants::$emailTaken);
+                return;
+            }
 
         }
         
