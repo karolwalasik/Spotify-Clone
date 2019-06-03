@@ -1,0 +1,143 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    background-image: url('../images/concert-768722_1920.jpg');
+    background-color: #000;
+    height:100%;
+    overflow: hidden;
+    background-size:cover;
+    background-position: center;
+}
+
+body{
+    height: 100%;;
+    color:white;
+    font-family: 'Helvetice Neue', 'Helvetica', 'Arial', sans-serif;
+}
+#background{
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.501)
+
+}
+
+#registerForm{
+    display: none;
+}
+
+.mainContainer{
+    height: 100%;
+    display: flex;
+    max-width:1200px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.leftContainer{
+    flex-basis:40%;
+    padding: 20px;
+    border-right: 1px solid #a0a0a0;
+}
+.rightContainer{
+    flex-basis:60%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+    display:block;
+    width:100%;
+    height: 27px;
+    line-height: 27px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline:none;
+    color:#fff;
+}
+
+h2{
+    text-align: center;
+}
+button{
+    background-color: transparent;
+    border: 2px solid white;
+    width:100%;
+    color: white;
+    border-radius: 50px;
+    font-size:14px;
+    letter-spacing: 1px;
+    margin: 20px auto;
+    height: 40px;
+    text-transform: uppercase;
+}
+button:hover{
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #fff;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #fff;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #fff;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #fff;
+  }
+
+  label{
+      color: #a0a0a0;
+      font-size: 14px;
+      display: inline-block;
+      margin-top: 16px;
+  }
+
+  .hasAccount{
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+  }
+
+  .hasAccount:hover{
+      cursor: pointer;
+  }
+
+  .rightSection{
+      padding: 45px;
+      
+  }
+  .rightSection h1{
+      color:#07d159;
+      font-size: 60px;
+      font-weight: bold;
+  }
+
+  .rightSection h2{
+      text-align: left;
+      margin: 30px 0;
+  }
+
+  .rightSection ul li{
+      font-size: 20px;
+      list-style-type: none;
+      padding: 10px;
+  }
+
+  .rightSection ul li i{
+      color:#07d159;
+      margin-right: 5px;
+  }
+
+  .errorMessage{
+      display: block;
+      font-size:14px;
+      margin-top: 16px;
+      color:#07d159;
+  }

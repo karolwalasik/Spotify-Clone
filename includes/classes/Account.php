@@ -60,6 +60,11 @@ class Account{
                 array_push($this->errorArray,Constants::$usernameCharacters);
                 return;
             }
+            $checkUsernameQuery=mysqli_query($this->con,"SELECT username FROM users WHERE username='$un'");
+            if(mysqli_num_rows($checkUsernameQuery)!=0){
+                array_push($this->errorArray,Constants::$usernameTaken);
+                return;
+            }
         }
         
         private function validateFirstName($fn){
@@ -69,11 +74,7 @@ class Account{
                 return;
             }
 
-            $checkUsernameQuery=mysqli_query($this->con,"SELECT username FROM users WHERE username='$un");
-            if(mysqli_num_rows($checkUsernameQuery)!=0){
-                array_push($this->errorArray,Constants::$usernameTaken);
-                return;
-            }
+          
 
         }
         
