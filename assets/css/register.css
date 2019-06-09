@@ -11,6 +11,7 @@ html{
     overflow: hidden;
     background-size:cover;
     background-position: center;
+  
 }
 
 body{
@@ -38,6 +39,7 @@ body{
 }
 
 .leftContainer{
+    
     flex-basis:40%;
     padding: 20px;
     border-right: 1px solid #a0a0a0;
