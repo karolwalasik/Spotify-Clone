@@ -354,3 +354,7 @@ margin-left: 5px;
 .tracklistRow .trackOptions i{
     visibility: hidden;
 }
+
+.repeat{
+    color: #07d159!important;
+}
