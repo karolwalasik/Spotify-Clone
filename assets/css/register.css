@@ -1,3 +1,5 @@
+
+
 *{
     padding: 0;
     margin: 0;
@@ -143,3 +145,79 @@ button:hover{
       margin-top: 16px;
       color:#07d159;
   }
+
+  @media only screen and (max-width: 768px){
+  
+.mainContainer{
+    display:grid;
+    overflow-Y:scroll
+}
+.rightContainer h1{
+    font-size:30px;
+}
+.rightContainer h2{
+    font-size:24px;
+}
+
+.rightContainer ul li{
+    font-size:16px;
+}
+
+.rightSection ul{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #a0a0a0;
+}
+.rightSection{
+    padding-bottom: 20px;
+}
+.leftContainer{
+    grid-row: 2;
+    border-right:none;
+}
+
+.leftContainer form{
+    width:80%;
+    margin: 0 auto;
+}
+
+
+ }
+ 
+
+ @media only screen and (max-height: 640px){
+  
+    .mainContainer{
+        display:grid;
+        overflow-Y:scroll
+    }
+    .rightContainer h1{
+        font-size:30px;
+    }
+    .rightContainer h2{
+        font-size:24px;
+    }
+    
+    .rightContainer ul li{
+        font-size:16px;
+    }
+    
+    .rightSection ul{
+        padding-bottom: 20px;
+        border-bottom: 1px solid #a0a0a0;
+    }
+    .rightSection{
+        padding-bottom: 20px;
+    }
+    .leftContainer{
+        grid-row: 2;
+        border-right:none;
+    }
+    
+    .leftContainer form{
+        width:80%;
+        margin: 0 auto;
+    }
+    
+    
+     }
+ 
