@@ -32,7 +32,7 @@ $artist = $album->getArtist();
 <div class="tracklistContainer">
     <ul class="tracklist">
         <?php
-            $songIdArray = $album->getSongsId();
+            $songIdArray = $album->getSongIds();
             $i=1;
             foreach($songIdArray as $songId){
                 $albumSong= new Song($con, $songId);
@@ -40,13 +40,13 @@ $artist = $album->getArtist();
 
                 echo "<li class='tracklistRow'>
                     <div class='trackCount'>
-                    <i class='fas fa-play'></i>
+                    <i class='fas fa-play' onclick='setTrack(\"".$albumSong->getId()."\",tempPlaylist,true)'></i>
                         <span class='trackNumber'>$i</span>
                     </div>
 
                     <div class='trackInfo'>
-                        <span class='trackName'>". $albumSong->getTitle() ."</span>
-                        <span class='artistName'>".$albumArtist->getName()."</span>
+                        <span class='trackNameList'>". $albumSong->getTitle() ."</span>
+                        <span class='artistNameList'>".$albumArtist->getName()."</span>
                     </div>
 
                     <div class='trackOptions'>
@@ -58,10 +58,13 @@ $artist = $album->getArtist();
                     </div>
 
                     </li>";
-                    $i++;
+                    $i=$i+1;
             }
         ?>    
-
+        <script>
+            var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+            tempPlaylist = JSON.parse(tempSongIds);
+        </script>
 
     </ul>
 </div>

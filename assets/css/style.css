@@ -112,11 +112,11 @@ body{
     float: left;
 }
 
-.trackName{
+.trackName,.trackNameList{
     display: block;
 }
 
-.artistName{
+.artistName,.artistNameList{
     display: block;
     font-size: 12px;
     color: #a0a0a0;
@@ -153,7 +153,7 @@ margin-top:10px;
 margin-left: 5px;
 }
 
-.playSound{
+.muteSound{
     display: none;
 }
 
@@ -355,6 +355,6 @@ margin-left: 5px;
     visibility: hidden;
 }
 
-.repeat{
+.buttonOn{
     color: #07d159!important;
 }

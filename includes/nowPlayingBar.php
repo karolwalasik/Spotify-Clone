@@ -14,9 +14,9 @@
 
 
 $(document).ready(function(){
-    currentPlaylist = <?php echo $jsonArray?>;
+    var newPlaylist = <?php echo $jsonArray?>;
     audioElement = new Audio();
-    setTrack(currentPlaylist[0],currentPlaylist,false);
+    setTrack(newPlaylist[0],newPlaylist,false);
     updateVolumeProgressBar(audioElement.audio);
 
     $("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function(e){
@@ -100,17 +100,60 @@ function nextSong(){
         currentIndex=currentIndex+1;
     }
 
-    var trackToPlay=currentPlaylist[currentIndex];
+    var trackToPlay=shuffle?shufflePlaylist[currentIndex]:currentPlaylist[currentIndex];
     setTrack(trackToPlay,currentPlaylist,true);
 }
 
 function setRepeat(){
     repeat = !repeat;
-   $(".loop .fas.fa-retweet").toggleClass("repeat");
+   $(".loop .fas.fa-retweet").toggleClass("buttonOn");
+}
+
+function setShuffle(){
+    shuffle=!shuffle;
+   $(".fas.fa-random").toggleClass("buttonOn");
+
+   if(shuffle){
+    shuffleArray(shufflePlaylist);
+    currentIndex= shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
+   }
+   else{
+    currentIndex= currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
+   }
+}
+
+function shuffleArray(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+}
+
+function setMute(){
+    audioElement.audio.muted=!audioElement.audio.muted;
+   if(audioElement.audio.muted){
+       $(".playSound").hide();
+       $(".muteSound").show();
+   }
+   else{
+    $(".playSound").show();
+       $(".muteSound").hide();
+   }
 }
 
 function setTrack(trackId, newPlaylist,play){
 
+    if(newPlaylist!=currentPlaylist){
+        currentPlaylist = newPlaylist;
+        shufflePlaylist=currentPlaylist.slice();
+        shuffleArray(shufflePlaylist);
+    }
+    if(shuffle){
+        currentIndex = shufflePlaylist.indexOf(trackId);
+    }
     currentIndex = currentPlaylist.indexOf(trackId);
     pauseSong();
     
@@ -185,7 +228,7 @@ function pauseSong(){
     <div id="nowPlayingCenter">
         <div class="content playerControls">
             <div class="buttons">
-                  <button class="controlButton shuffle" title="shuffle"> <i class="fas fa-random"></i></button>
+                  <button class="controlButton shuffle" onclick="setShuffle()"title="shuffle"> <i class="fas fa-random"></i></button>
                   <button class="controlButton previous" onclick="prevSong()"title="previous"> <i class="fas fa-step-backward"></i></button>
                   <button class="controlButton playNow" title="play" onclick="playSong()"> <i class="far fa-play-circle"></i></button>
                   <button class="controlButton pause" title="pause" onclick="pauseSong()"> <i class="fas fa-pause"></i></button>
@@ -206,7 +249,7 @@ function pauseSong(){
     <div id="nowPlayingRight">
 <div class="volumeBar">
 
-<button class="controlButton volume" title="Volume button">
+<button class="controlButton volume" onclick="setMute()" title="Volume button">
 <i class="fas fa-volume-up playSound"></i>
 <i class="fas fa-volume-mute muteSound"></i>
 </button>
