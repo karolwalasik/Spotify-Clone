@@ -1,8 +1,8 @@
  <div id="navBarContainer">
         <nav class="navBar">
-            <a href="index.php" class="logo">
+            <span class="logo" onclick="openPage('index.php')">
                 <i class="fab fa-spotify"></i>
-            </a>
+            </span>
 
             <div class="group">
                 <div class="navItem">
