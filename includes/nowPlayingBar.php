@@ -176,12 +176,13 @@ function setTrack(trackId, newPlaylist,play){
         });
 
         audioElement.setTrack(track);
+        if(play){
+        playSong();
+    }
         
     });
 
-    if(play){
-        audioElement.play();
-    }
+   
 }
 
 function playSong(){
